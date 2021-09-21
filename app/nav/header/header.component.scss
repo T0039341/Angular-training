@@ -1,0 +1,29 @@
+a {
+  text-decoration: none;
+  color: white;
+}
+
+
+a:hover,
+a:active {
+  color: lightgray;
+  transition: all 200ms;
+}
+
+.navigation-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar-text {
+  display: inline-block;
+  margin-left: 0.5em;
+}
+
+.navbar-logo {
+  cursor: pointer;
+  // margin-left:2em;
+  margin-top: 0.4em;
+  margin-left: 0.2em;
+}

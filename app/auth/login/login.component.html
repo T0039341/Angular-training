@@ -1,0 +1,35 @@
+<section class="login-form">
+    <form [formGroup]="loginForm" fxLayoutGap="10px" fxLayout="column" fxLayoutAlign="center center"
+        (submit)="submit()">
+        <mat-form-field>
+            <input formControlName="email" type="email" matInput placeholder="Your email" required />
+            <mat-error *ngIf="
+            loginForm.controls.email.touched && loginForm.controls.email.invalid
+          ">
+                <span *ngIf="loginForm.controls.email.errors.required">This field is mandatory</span>
+                <span *ngIf="loginForm.controls.email.errors.pattern">
+                    This field is invalid
+                </span>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="password" type="password" matInput placeholder="Your password" required />
+            <mat-error *ngIf="
+            loginForm.controls.password.touched &&
+            loginForm.controls.password.invalid
+          ">
+                <span *ngIf="loginForm.controls.password.errors.required">This field is mandatory</span>
+                <span *ngIf="loginForm.controls.password.errors.pattern"> Make sure the password contains: 1 character
+                    1
+                    Uppercase
+                    letter 1 digit</span>
+
+            </mat-error>
+            <mat-hint *ngIf="!loginForm.controls.password.valid"> Should be at least 8 characters </mat-hint>
+        </mat-form-field>
+
+
+
+        <button [disabled]="!loginForm.valid" mat-raised-button color="primary">Submit</button>
+    </form>
+</section>

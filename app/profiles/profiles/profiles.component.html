@@ -1,0 +1,26 @@
+<ng-container *ngIf="profiles?.length > 0;else noProfiles">
+    <div class="card-wrapper" *ngFor="let profile of profiles">
+        <mat-card class="profile-card">
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>{{profile.name}}</mat-card-title>
+                <mat-card-subtitle>{{profile.username}}</mat-card-subtitle>
+
+            </mat-card-header>
+            <mat-card-content>
+                <p>
+                    Hey everyone, my name is {{profile.name}} i am from {{profile.country}} living in
+                    {{profile.address}} and i make {{profile.salary}}$ a year. {{profile.id}}
+                </p>
+
+                <mat-icon class="delete-icon" (click)="deleteProfile($event,profile)">delete_outline</mat-icon>
+                <mat-icon class="edit-icon" routerLink="{{profile.id}}">edit</mat-icon>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</ng-container>
+
+
+<ng-template #noProfiles>
+    <h1>THERE ARE NO PROFILES</h1>
+</ng-template>

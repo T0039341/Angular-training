@@ -1,0 +1,98 @@
+<section class="profile-form">
+    <form [formGroup]="profileForm" fxLayoutGap="10px" fxLayout="column" fxLayoutAlign="center center"
+        (submit)="submit()">
+        <mat-form-field>
+            <input formControlName="username" type="text" matInput placeholder="Your username" required />
+            <mat-error *ngIf="
+            profileForm.controls.username.touched && profileForm.controls.username.invalid
+          ">
+                <span *ngIf="profileForm.controls.username.errors.required">This field is mandatory</span>
+
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input formControlName="name" type="name" matInput placeholder="Your name" />
+            <mat-error *ngIf="
+            profileForm.controls.name.touched &&
+            profileForm.controls.name.invalid
+          ">
+                <span *ngIf="profileForm.controls.name.errors.required">This field is mandatory</span>
+
+
+            </mat-error>
+            <!-- <mat-hint *ngIf="!signupForm.controls.password.valid"> Should be at least 8 characters </mat-hint> -->
+        </mat-form-field>
+
+
+        <!-- <mat-select-country  appearance="outline" label="Country" class="className"
+            formControlName="country" (onCountrySelected)="onCountrySelected($event)">
+        </mat-select-country>
+        <mat-error *ngIf="
+            profileForm.controls.country.touched &&
+            profileForm.controls.country.invalid
+          ">
+            <span *ngIf="profileForm.controls.country.errors.required">This field is mandatory</span>
+        </mat-error> -->
+
+        <mat-form-field class="example-full-width">
+            <input type="text" placeholder="Country" aria-label="Number" matInput formControlName="country"
+                [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions|async" [value]="option">
+                    {{option}}
+                </mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="
+            profileForm.controls.country.touched &&
+            profileForm.controls.country.invalid
+          ">
+                <span *ngIf="profileForm.controls.country.errors.required">This field is mandatory</span>
+                <span *ngIf="profileForm.controls.country.errors.countryValidator"></span>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input formControlName="address" type="address" matInput placeholder="Address" />
+            <mat-error *ngIf="
+            profileForm.controls.address.touched &&
+            profileForm.controls.address.invalid
+          ">
+                <span *ngIf="profileForm.controls.address.errors.required">This field is mandatory</span>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput formControlName="dob" [matDatepicker]="picker" placeholder="Date of birth" />
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="
+            profileForm.controls.dob.touched &&
+            profileForm.controls.dob.invalid
+          ">
+                <span *ngIf="profileForm.controls.dob.errors.required">This field is mandatory</span>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput formControlName="salary" type="number" placeholder="salary" />
+
+            <mat-error *ngIf="
+            profileForm.controls.salary.touched &&
+            profileForm.controls.salary.invalid
+          ">
+                <span *ngIf="profileForm.controls.salary.errors.required">This field is mandatory</span>
+            </mat-error>
+            <mat-hint> Annual salary in USD </mat-hint>
+        </mat-form-field>
+        <section class="checkbox">
+            <mat-checkbox class="amateur" color="primary" formControlName="isActive">Active</mat-checkbox>
+        </section>
+
+        <section class="image-input">
+            <input formControlName="img" type="file" placeholder="Your img" value={this.state.image}
+                (change)="onFileSelected($event)" />
+
+        </section>
+        <button [disabled]="!profileForm.valid" mat-raised-button color="primary">Submit</button>
+    </form>
+</section>
